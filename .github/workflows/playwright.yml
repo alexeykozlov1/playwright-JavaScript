@@ -1,0 +1,12 @@
+name: Playwright JavaScript
+on:
+    push:
+        branches: [main]
+jobs:
+    playwrighttests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v2       
+            - name: First Check
+              run: echo Hello 
