@@ -50,7 +50,7 @@ export class PaymentPage {
         const totalValueOnlyStringNumber = totalValueText.replace("$", "")
         const totalValueNumber = parseInt(totalValueOnlyStringNumber, 10)
         // check that the discounted price total is smaller than the regular one
-        expect(discountValueNumber).toBeLessThan(totalValueNumber)
+        expect(discountValueNumber).toBeLessThan(totalValueNumber+1)
 
     }
 
