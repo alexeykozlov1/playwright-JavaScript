@@ -1,12 +1,24 @@
 name: Playwright JavaScript
 on:
-    push:
-        branches: [main]
+  push:
+    branches: [main]
 jobs:
-    playwrighttests:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repo
-              uses: actions/checkout@v2       
-            - name: First Check
-              run: echo Hello 
+  playwrighttests:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.44.1-jammy
+      env:
+        ADMIN_USERNAME: ${{secrets.ADMIN_USERNAME}}
+        ADMIN_PASSWORD: ${{secrets.ADMIN_PASSWORD}}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: |
+          echo "Start the store app"
+          chmod +x ./shopping-store-linux-amd64 &
+          echo "Install dependencies from lockfile"
+          npm ci
+          echo "Run playwright tests"
+          npm run test:ci
